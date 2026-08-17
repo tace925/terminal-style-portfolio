@@ -1,0 +1,396 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #050506;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 300ms ease, color 300ms ease;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-shell {
+  --bg: #050506;
+  --panel: #10100f;
+  --terminal: #0b0c0b;
+  --line: rgba(244, 239, 224, 0.16);
+  --text: #f4efe0;
+  --soft: #c8c0aa;
+  --muted: #8c877a;
+  --comment: #747c68;
+  --gold: #d7a84d;
+  --keyword: #a7c987;
+  --function: #efcb7a;
+  --warning: #f0a64a;
+  --success: #81c784;
+  --tab-hover: rgba(215, 168, 77, 0.11);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(215, 168, 77, 0.16), transparent 24rem),
+    radial-gradient(circle at 90% 6%, rgba(111, 136, 95, 0.14), transparent 22rem),
+    linear-gradient(180deg, var(--bg) 0%, #080807 50%, var(--bg) 100%);
+  color: var(--text);
+  transition: background 300ms ease, color 300ms ease;
+}
+
+.site-shell.light {
+  --bg: #faf7ee;
+  --panel: #fffaf0;
+  --terminal: #fffef8;
+  --line: rgba(21, 18, 13, 0.17);
+  --text: #15120d;
+  --soft: #514a3c;
+  --muted: #756c5c;
+  --comment: #6d7d54;
+  --gold: #9c6b16;
+  --keyword: #4d731d;
+  --function: #9c6b16;
+  --warning: #a25800;
+  --success: #2e7d32;
+  --tab-hover: rgba(156, 107, 22, 0.12);
+  background:
+    radial-gradient(circle at 14% 16%, rgba(215, 168, 77, 0.28), transparent 24rem),
+    radial-gradient(circle at 90% 4%, rgba(103, 126, 83, 0.18), transparent 22rem),
+    linear-gradient(180deg, var(--bg) 0%, #f3eddf 50%, var(--bg) 100%);
+}
+
+.font-mono,
+.code-block,
+.tab-bar,
+.contact-form {
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+.nav-tab {
+  position: relative;
+}
+
+.nav-tab::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--gold);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 220ms ease;
+}
+
+.nav-tab:hover::after {
+  transform: scaleX(1);
+}
+
+.hero-plane {
+  isolation: isolate;
+}
+
+.hero-plane::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(rgba(244, 239, 224, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 239, 224, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  content: "";
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.light .hero-plane::before {
+  background:
+    linear-gradient(rgba(21, 18, 13, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21, 18, 13, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.code-atmosphere {
+  position: absolute;
+  inset: 12% -8% auto auto;
+  z-index: 0;
+  display: flex;
+  width: min(760px, 92vw);
+  flex-direction: column;
+  gap: 1.15rem;
+  color: color-mix(in srgb, var(--comment) 52%, transparent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(0.75rem, 1.2vw, 1rem);
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+
+.code-atmosphere span {
+  animation: driftLine 7s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.brand-title {
+  text-wrap: balance;
+}
+
+.typing-text {
+  width: 21ch;
+  border-right: 2px solid var(--gold);
+  animation: typing 3.8s steps(21, end) infinite alternate, blink 760ms step-end infinite;
+}
+
+.hero-code {
+  animation: codeGlow 4.5s ease-in-out infinite alternate;
+}
+
+.section-wrap {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(5rem, 10vw, 9rem) 0 0;
+  scroll-margin-top: 7rem;
+}
+
+.section-heading {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.section-kicker {
+  margin-bottom: 0.65rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-heading h2 {
+  max-width: 780px;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 850;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+  color: var(--text);
+}
+
+.section-heading p:not(.section-kicker) {
+  max-width: 720px;
+  margin-top: 1rem;
+  color: var(--soft);
+  line-height: 1.8;
+}
+
+.terminal-window,
+.contact-form {
+  border-radius: 0;
+}
+
+.code-block {
+  margin: 0;
+  min-width: max-content;
+  font-size: clamp(0.82rem, 1.5vw, 1rem);
+  line-height: 1.8;
+  tab-size: 2;
+}
+
+.filter-button {
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 0.72rem 0.95rem;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
+}
+
+.filter-button:hover,
+.filter-button.is-active {
+  border-color: var(--gold);
+  background: var(--tab-hover);
+  color: var(--gold);
+}
+
+.project-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 300ms ease, opacity 250ms ease;
+}
+
+.project-panel > div {
+  overflow: hidden;
+}
+
+.project-panel.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.code-link {
+  border-bottom: 1px solid currentColor;
+  color: var(--gold);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 200ms ease, letter-spacing 200ms ease;
+}
+
+.code-link:hover {
+  letter-spacing: 0.12em;
+}
+
+.playground-lines {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 2rem 0;
+  color: var(--soft);
+}
+
+.playground-lines p {
+  margin: 0;
+  padding: 0.35rem 0;
+}
+
+.playground-lines span {
+  display: inline-block;
+  width: 3rem;
+  color: var(--muted);
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.contact-form span {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--comment);
+  font-size: 0.8rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  color: var(--text);
+  outline: none;
+  padding: 0.9rem 1rem;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 18%, transparent);
+}
+
+.submit-button {
+  width: 100%;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+  padding: 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.form-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 21ch;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes driftLine {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-18px, 14px, 0);
+  }
+}
+
+@keyframes codeGlow {
+  from {
+    opacity: 0.52;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0.92;
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 720px) {
+  .code-atmosphere {
+    inset: 15% -40% auto auto;
+    opacity: 0.6;
+  }
+
+  .section-wrap {
+    width: min(100% - 1.25rem, 1120px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
